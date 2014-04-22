@@ -1,25 +1,27 @@
+<%@ page language="java" pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<%@include file="/commons/common.jsp" %>
 <!--框架必需start-->
-<script type="text/javascript" src="../../libs/js/jquery.js"></script>
-<script type="text/javascript" src="../../libs/js/framework.js"></script>
-<link href="../../libs/css/import_basic.css" rel="stylesheet" type="text/css"/>
-<link rel="stylesheet" type="text/css" id="skin" prePath="../../"/>
-<link rel="stylesheet" type="text/css" id="customSkin"/>
+<script type="text/javascript" src="libs/js/jquery.js"></script>
+<script type="text/javascript" src="libs/js/framework.js"></script>
+<link href="libs/css/import_basic.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" id="skin" prePath="../../../../" />
+<link rel="stylesheet" type="text/css" id="customSkin"/> 
 <!--框架必需end-->
 
-<!--修正IE6不支持PNG图start-->
+<!--修正IE6不支持PNG图start--> 
 <style>
 img {
-	behavior:url("../../libs/js/method/pngFix/pngbehavior.htc");
+	behavior:url("libs/js/method/pngFix/pngbehavior.htc");
 }
 </style>
 <!--修正IE6不支持PNG图end-->
 
 <!--动画方式入场效果start-->
-<script type="text/javascript" src="../../libs/js/pic/jomino.js"></script>
+<script type="text/javascript" src="libs/js/pic/jomino.js"></script>
 <script>
 	 $(function(){
 		$(".navIcon").jomino();
@@ -36,7 +38,7 @@ img {
 				<tr height="146">
 					<td width="260">
 						<div class="navIcon" onclick="top.Dialog.alert('个人中心')" style="display:none;">
-							<div class="navIcon_left"><img src="../../libs/icons/png/01.png"/></div>
+							<div class="navIcon_left"><img src="libs/icons/png/01.png"/></div>
 							<div class="navIcon_right">
 								<div class="navIcon_right_title">个人中心</div>
 								<div class="navIcon_right_con">
@@ -50,7 +52,7 @@ img {
 					</td>
 					<td width="260">
 						<div class="navIcon" onclick="top.Dialog.alert('个人收藏夹')" style="display:none;">
-							<div class="navIcon_left"><img src="../../libs/icons/png/02.png"/></div>
+							<div class="navIcon_left"><img src="libs/icons/png/02.png"/></div>
 							<div class="navIcon_right">
 								<div class="navIcon_right_title">个人收藏夹</div>
 								<div class="navIcon_right_con">
@@ -62,7 +64,7 @@ img {
 					</td>
 					<td width="260">
 						<div class="navIcon" onclick="top.Dialog.alert('高级搜索')" style="display:none;">
-							<div class="navIcon_left"><img src="../../libs/icons/png/03.png"/></div>
+							<div class="navIcon_left"><img src="libs/icons/png/03.png"/></div>
 							<div class="navIcon_right">
 								<div class="navIcon_right_title">高级搜索</div>
 								<div class="navIcon_right_con">
@@ -77,7 +79,7 @@ img {
 				<tr height="146">
 					<td>
 						<div class="navIcon" onclick="top.Dialog.alert('文档管理')" style="display:none;">
-							<div class="navIcon_left"><img src="../../libs/icons/png/04.png"/></div>
+							<div class="navIcon_left"><img src="libs/icons/png/04.png"/></div>
 							<div class="navIcon_right">
 								<div class="navIcon_right_title">文档管理</div>
 								<div class="navIcon_right_con">
@@ -89,7 +91,7 @@ img {
 					</td>
 					<td>
 						<div class="navIcon" onclick="top.Dialog.alert('帮助中心')" style="display:none;">
-							<div class="navIcon_left"><img src="../../libs/icons/png/05.png"/></div>
+							<div class="navIcon_left"><img src="libs/icons/png/05.png"/></div>
 							<div class="navIcon_right">
 								<div class="navIcon_right_title">帮助中心</div>
 								<div class="navIcon_right_con">
@@ -103,7 +105,7 @@ img {
 					</td>
 					<td>
 						<div class="navIcon" onclick="top.Dialog.alert('个人存储空间')" style="display:none;">
-							<div class="navIcon_left"><img src="../../libs/icons/png/06.png"/></div>
+							<div class="navIcon_left"><img src="libs/icons/png/06.png"/></div>
 							<div class="navIcon_right">
 								<div class="navIcon_right_title">个人存储空间</div>
 								<div class="navIcon_right_con">
@@ -117,7 +119,7 @@ img {
 				<tr height="146">
 					<td>
 						<div class="navIcon" onclick="top.Dialog.alert('附件管理')" style="display:none;">
-							<div class="navIcon_left"><img src="../../libs/icons/png/07.png"/></div>
+							<div class="navIcon_left"><img src="libs/icons/png/07.png"/></div>
 							<div class="navIcon_right">
 								<div class="navIcon_right_title">附件管理</div>
 								<div class="navIcon_right_con">
@@ -130,7 +132,7 @@ img {
 					</td>
 					<td>
 						<div class="navIcon" onclick="top.Dialog.alert('通知消息')" style="display:none;">
-							<div class="navIcon_left"><img src="../../libs/icons/png/08.png"/></div>
+							<div class="navIcon_left"><img src="libs/icons/png/08.png"/></div>
 							<div class="navIcon_right">
 								<div class="navIcon_right_title">通知消息</div>
 								<div class="navIcon_right_con">
@@ -143,7 +145,7 @@ img {
 					</td>
 					<td>
 						<div class="navIcon" onclick="top.Dialog.alert('回收站')" style="display:none;">
-							<div class="navIcon_left"><img src="../../libs/icons/png/09.png"/></div>
+							<div class="navIcon_left"><img src="libs/icons/png/09.png"/></div>
 							<div class="navIcon_right">
 								<div class="navIcon_right_title">回收站</div>
 								<div class="navIcon_right_con">
