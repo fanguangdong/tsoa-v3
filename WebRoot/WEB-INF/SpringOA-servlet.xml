@@ -83,8 +83,8 @@
 		
 		<property name="excludedUrls">
 			<list>
-				<value>/showLogin.oa</value>
-				<value>/login.oa</value>
+				<value>/loginUI.oa</value>
+				<value>/login.oa</value> 
 			</list>
 		</property>
 	</bean>
@@ -101,34 +101,26 @@
 	
 	
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-		<!-- 
+		
 		<property name="messageConverters">
 			<util:list id="beanList">
 				<ref bean="mappingJacksonHttpMessageConverter" />
 			</util:list>
 		</property>
-		 -->
-		<!--  TODO
-		<property name="webBindingInitializer">
-			<bean class="com.ocsoft.core.web.spring.BindingInitializer"/>
-		</property>
-		  -->
+
 	</bean>
 	
-	<!-- 
+	
 	<bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-		<property name="objectMapper">
-            <bean class="com.ocsoft.core.util.HibernateAwareObjectMapper" />
-        </property>
 		
-		<property name="supportedMediaTypes">
+		<property name="supportedMediaTypes"> 
 			<list>
 				<value>text/html;charset=UTF-8</value>
 				<value>application/json;charset=UTF-8</value>
 			</list>
 		</property>
 	</bean>
-	 -->
+	
 	 
 	 <!-- Method Name Resolver used by Controllers 
 	<bean id="methodNameResolver" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
