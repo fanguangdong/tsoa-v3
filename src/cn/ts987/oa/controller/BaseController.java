@@ -1,6 +1,7 @@
 package cn.ts987.oa.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
@@ -8,9 +9,8 @@ import java.util.Date;
 import java.util.UUID;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletContext;
 
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.web.multipart.MultipartFile;
 
 import cn.ts987.oa.domain.User;
 import cn.ts987.oa.service.DepartmentService;
@@ -97,9 +97,13 @@ public abstract class BaseController<T>{
 	 * 
 	 * @param upload
 	 * @return
+	 * @throws Exception 
 	 */
-	protected String saveUploadFile(File upload) {
-		//String basePath = ServletActionContext.getServletContext().getRealPath("/WEB-INF/upload_files/"); // 返回结果最后没有'/'
+	protected String saveUploadFile(MultipartFile upload) throws Exception {
+		if(upload.isEmpty()) {
+			throw new Exception("文件为空");
+		}
+		
 		String basePath = null;
 		SimpleDateFormat sdf = new SimpleDateFormat("/yyyy/MM/dd/");
 		String subPath = sdf.format(new Date());
@@ -114,8 +118,19 @@ public abstract class BaseController<T>{
 		// 移动到目的地，return true if and only if the renaming succeeded; false otherwise
 		// 如果目标文件存在就会失败返回false.
 		// 如果目标文件所在的文件夹不存在，就会失败返回false.
-		upload.renameTo(destFile); 
+		try {
+			upload.transferTo(destFile);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+			throw new IllegalStateException("文件存储错误");
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+			
+		}
+		//upload.renameTo(destFile); 
 		
+		//从WEB-INF往下的路径，存在数据库中
 		String relativeFilePath = path.substring(path.indexOf("WEB-INF"), path.length());
 		return relativeFilePath;
 	}

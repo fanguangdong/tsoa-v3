@@ -30,26 +30,16 @@ public class UserController extends BaseController<User>{
 	
 	private Long[] roleIds;
 	
-	//用户登录UI
-	public String loginUI() {
-		 
-		return "loginUI";
-	}
-
-	
 	//用户登陆
-	public String login() {
-		User user = userService.validateUser(model.getLoginName(), model.getPassword());
-		if(user == null) {
-			///addFieldError("login", "用户名和密码不正确！");
-			return "loginFailed"; 
-		}
-		
-		//ActionContext.getContext().getSession().put("user", user);
-		return "toIndex";
+	@RequestMapping("/user/loginUI")
+	public ModelAndView loginUI() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("login/login");
+		return mv;
 	}
 	
-	@RequestMapping("/login")
+	@SuppressWarnings("rawtypes")
+	@RequestMapping("/user/login")
 	@ResponseBody
 	public Map login(HttpServletRequest request, HttpServletResponse response)
 	{
@@ -64,7 +54,7 @@ public class UserController extends BaseController<User>{
 				if(user != null)
 				{
 					rtn.put("status", 1);
-					request.getSession().setAttribute("user", userName);
+					request.getSession().setAttribute("user", user);
 					
 				}
 				
@@ -76,15 +66,10 @@ public class UserController extends BaseController<User>{
 		return rtn;
 	}
 	
-	@RequestMapping("/logout")
-	public String logout(HttpSession session) {
+	@RequestMapping("/user/logout")
+	public ModelAndView logout(HttpSession session) {
 	    session.removeAttribute("user");
-	    return "/login";
-	}
-	//用户注销
-	public String logout() {
-		//ActionContext.getContext().getSession().remove("user");
-		return "logout";
+	    return loginUI();
 	}
 	
 	@RequestMapping("/user/list")

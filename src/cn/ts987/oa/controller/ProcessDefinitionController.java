@@ -1,20 +1,15 @@
 package cn.ts987.oa.controller;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URLEncoder;
 import java.util.Collection;
 import java.util.zip.ZipInputStream;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.activiti.engine.repository.ProcessDefinition;
 import org.apache.log4j.Logger;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,7 +40,7 @@ public class ProcessDefinitionController extends BaseController<Object>{
 		return mv;
 	}
 	
-	@RequestMapping(value="processDefinition/add", method=RequestMethod.POST)//将文件上传请求映射到该方法
+	@RequestMapping(value="/add", method=RequestMethod.POST)//将文件上传请求映射到该方法
     public ModelAndView uploadFile(MultipartHttpServletRequest request) throws Exception{        
         MultipartFile file = request.getFile("file");//取得from里面的参数
         
@@ -56,12 +51,7 @@ public class ProcessDefinitionController extends BaseController<Object>{
         ZipInputStream zipInputStream = new ZipInputStream(file.getInputStream());
 		processDefinitionService.deployZip(zipInputStream);
         
-		//流程定义添加成功后，转到列表页面
-		Collection<ProcessDefinition> pdList = processDefinitionService.findAllLatestVersions();
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("pdList", pdList);
-		mv.setViewName("workflow/processDefinition/list");
-        return mv;//返回成功视图
+		return this.list();
     }   
 	
 	@RequestMapping("/delete")
@@ -83,7 +73,7 @@ public class ProcessDefinitionController extends BaseController<Object>{
 	 * @throws Exception 
 	 */
 	@RequestMapping("/showProcessImage")
-	public void showProcess(@RequestParam String pdId, HttpServletResponse response)
+	public void showProcess(@RequestParam String pdId, HttpServletResponse response) throws Exception
 	{
 		try {
 			
@@ -95,12 +85,14 @@ public class ProcessDefinitionController extends BaseController<Object>{
 			}
 		}
 		catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			logger.fatal("读取图片流错误");
+			throw new IOException("读取图片流错误");
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			logger.fatal("图片查看异常");
+			throw new Exception("图片查看异常");
 		}
 		
 	}

@@ -19,9 +19,9 @@ public class IndexController{
 	public ModelAndView showMain(HttpSession session, HttpServletRequest request, HttpServletResponse response)
 	{
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("user", "fgd");
+		//mv.addObject("user", session.getAttribute("user"));
 		
-		mv.setViewName("index/main");
+		mv.setViewName("index/main");  
 		
 		logger.setLevel(Level.DEBUG);
 		logger.debug("session: " + session);
@@ -36,6 +36,16 @@ public class IndexController{
 		//List<Module> modules = moduleService.getByParentId(Long.valueOf(0));
 		//mv.addObject("modules", modules);
 		mv.setViewName("index/left"); 
+		return mv;
+	}
+	
+	@RequestMapping("/toolBox")
+	public ModelAndView toolBox(HttpServletRequest request, HttpServletResponse response)
+	{
+		ModelAndView mv = new ModelAndView();
+		//List<Module> modules = moduleService.getByParentId(Long.valueOf(0));
+		//mv.addObject("modules", modules);
+		mv.setViewName("index/open"); 
 		return mv;
 	}
 	
