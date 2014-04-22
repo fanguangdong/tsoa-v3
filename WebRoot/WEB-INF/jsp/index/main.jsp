@@ -45,6 +45,7 @@ window.opener=null;
 }
 function backHome(){
 	document.getElementById("frmleft").contentWindow.homeHandler();
+	//window.location.href = "index.oa";
 }
 </script>
 <style>
@@ -70,7 +71,7 @@ a {
 		     
 			
 			<div class="float_left padding_top2 padding_left5">
-			    您好，<b>${user }</b> &nbsp;&nbsp;
+			    您好，<b>${user.name }</b> &nbsp;&nbsp;
 			       
 				【今天是
 				<script>
@@ -94,12 +95,12 @@ a {
 			</div>	
 			
 			<div class="float_right padding_top2 padding_right5">
-				<a href="open.html" target="frmright" onclick='backHome()'><span class="icon_home hand">返回导航页&nbsp;</span></a>
+				<a href="toolBox.oa" target="frmright" onclick='backHome()'><span class="icon_home hand">返回导航页&nbsp;</span></a>
 				<span class="icon_fullscreen hand" id="fullSrceen" hideNav="true">开启全屏&nbsp;</span>
 				<!-- 
 				<span class="icon_delete hand" onclick='top.Dialog.confirm("确定要关闭本页吗？",function(){windowClose()});'>关闭本页</span>
 				 -->
-				 <span class="icon_delete hand" onclick='top.Dialog.confirm("确定要退出系统吗？",function(){window.location.href="user_logout.action"});'>退出系统&nbsp;</span>
+				 <span class="icon_delete hand" onclick='top.Dialog.confirm("确定要退出系统吗？",function(){window.location.href="user/logout.oa"});'>退出系统&nbsp;</span>
 				<div class="clear"></div>
 			</div>
 			<div class="clear"></div>
@@ -160,7 +161,7 @@ a {
 								<div id="rbox_middleleft">
 								<div id="rbox_middleright">
 									<div id="bs_right">
-									       <IFRAME scrolling="no" width="100%" frameBorder=0 id=frmright name=frmright src="system/layout/open.html"  allowTransparency="true"></IFRAME>
+									       <IFRAME scrolling="no" width="100%" frameBorder=0 id=frmright name=frmright src="toolBox.oa"  allowTransparency="true"></IFRAME>
 									</div>
 								</div>
 								</div> 
@@ -183,7 +184,7 @@ a {
 	<div id="bs_footcenter">
 	<div id="bs_footleft">
 	<div id="bs_footright">
-		版权所有：http://www.quickui.net
+		版权所有：大连天时创世纪传媒 2014
 	</div>
 	</div>
 	</div>

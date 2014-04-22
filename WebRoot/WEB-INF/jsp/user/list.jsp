@@ -61,7 +61,6 @@
 
 
 <div id="scrollContent" >
-	<form action="userAction.do?method=getUsersBasic" method="post" id="usersForm">
 	<table class="tableStyle" useClick="false"  useCheckBox="true" sortMode="true">
 		<tr>
 			
@@ -116,7 +115,6 @@
 		 -->
 		
 	</table>
-	</form>
 </div>
 <div style="height:35px;">
 	<div class="float_left padding5">

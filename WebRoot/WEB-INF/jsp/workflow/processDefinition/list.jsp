@@ -109,7 +109,7 @@
 				<td>
 					<a href="javascript: showProcessImage('${pd.id}')"> 查看流程图    &nbsp;</a> 
 					
-					<a href="processDefinition/showProcessImage.oa?key=${pd.key}">删除</a>
+					<a href="processDefinition/delete.oa?key=${pd.key}">删除</a>
 					
 				</td>
 			</tr>

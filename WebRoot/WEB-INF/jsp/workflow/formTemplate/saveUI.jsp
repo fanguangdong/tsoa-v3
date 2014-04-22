@@ -26,16 +26,19 @@
 <body>
 <div id="scrollContent">
 	<div class="box2" panelWidth="500" panelTitle="添加流程模板" >
-	
-		<s:form action="formTemplate_%{id == null ? 'add' : 'update'}" enctype="multipart/form-data">
-			<s:hidden name="id"></s:hidden>
+		<jsp:useBean id="formTemplate"  class="cn.ts987.oa.domain.FormTemplate" scope="request" ></jsp:useBean>
+		<form:form commandName="formTemplate" method="post" action="formTemplate/update.oa" enctype="multipart/form-data">
+			<input type="hidden" name="id"/>
 			<table class="tableStyle">
 				<tr><td width="150">模板名称：</td>   <td><input type="text" name="name" class="validate[required]"/> <span class="star">*</span></td></tr> 
 				
 				<tr><td width="150">所用流程：</td>   
 					<td>
-						<s:select name="pdKey" list="#processDefinitionList" listKey="key" listValue="key" cssClass="validate[required]">
-						</s:select>  <span class="star"> *</span>
+						<form:input path="name" />
+						
+						
+						<select name="pdKey" list="#processDefinitionList" listKey="key" listValue="key" cssClass="validate[required]">
+						</select>  <span class="star"> *</span>
 					</td>
 				</tr>
 				
@@ -49,7 +52,7 @@
 				<tr><td colspan="2"><input type="submit" value="提交"/>&nbsp;&nbsp;<input type="button" onclick="history.back()" value="返回"/></td></tr>
 				
 			</table>
-		</s:form>
+		</form:form>
 	</div>
 	
 	

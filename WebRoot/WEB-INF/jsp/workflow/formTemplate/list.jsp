@@ -29,7 +29,7 @@
 	
 	<table>
 		<tr>
-			<td><button type="button" onclick="window.location.href='formTemplate_addUI.action'"><span class="icon_reload">增加流程模板</span></button></td>
+			<td><button type="button" onclick="window.location.href='formTemplate/addUI.oa'"><span class="icon_reload">增加流程模板</span></button></td>
 		</tr>
 	</table>
 	 
@@ -61,29 +61,27 @@
 
 
 <div id="scrollContent" >
-	<form action="userAction.do?method=getUsersBasic" method="post" id="usersForm">
 	<table class="tableStyle" useClick="false"  useCheckBox="true" sortMode="true">
 		<tr>
 			<th width="1"></th>
 			<th width="30"><span  id="span_userName">模板名称</span></th>
 			<th width="30"><span id="span_userLoginName">所用流程</span></th>
-		
 			<th width="80">相关操作</th>
 		</tr>
 		
-		
-		<s:iterator value="#formTemplateList">
+		<c:forEach var="pt" items="${formTemplateList }">
 			<tr>
 				<td><input type="checkbox"/></td>
-				<td>${name}&nbsp;</td>
-				<td>${pdKey}&nbsp;</td>
+				<td>${pt.name}&nbsp;</td>
+				<td>${pt.pdKey}&nbsp;</td>
 				<td>
-					<s:a action="formTemplate_delete?id=%{id}" onclick="return delConfirm()">删除</s:a>
-					<s:a action="formTemplate_updateUI?id=%{id}">修改</s:a>
-					<s:a action="formTemplate_download?id=%{id}">下载</s:a>
+					<a href="formTemplate/delete.oa?id=%{pt.id}" onclick="return delConfirm()">删除</a>
+					<a href="formTemplate/updateUI.oa?id=%{pt.id}">修改</a>
+					<a href="formTemplate/download?id=%{pt.id}">下载</a>
 				</td>
 			</tr>
-		</s:iterator>
+		</c:forEach>
+		
 		
 		<!-- 
 		<tr>
@@ -95,7 +93,6 @@
 		 -->
 		
 	</table>
-	</form>
 </div>
 <div style="height:35px;">
 	<div class="float_left padding5">
