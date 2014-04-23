@@ -1,71 +1,58 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" pageEncoding="utf-8"%>
 
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>部门设置</title>
-    
-	<%@ include file="/commons/common.jsp" %>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>新增部门</title>
+<%@ include file="/commons/common.jsp"%>
+
+
+<!--框架必需start-->
+<script type="text/javascript" src="libs/js/jquery.js"></script>
+<script type="text/javascript" src="libs/js/framework.js"></script>
+<link href="libs/css/import_basic.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" id="skin" prePath="<%=request.getContextPath() %>/"/>
+<link rel="stylesheet" type="text/css" id="customSkin"/>
+<!--框架必需end-->
+
+<!-- 表单验证start -->
+<script src="libs/js/form/validationRule.js" type="text/javascript"></script>
+<script src="libs/js/form/validation.js" type="text/javascript"></script>
+<!-- 表单验证end -->
+
 </head>
 <body>
-
-<!-- 标题显示 --> 
-<div id="Title_bar">
-    <div id="Title_bar_Head">
-        <div id="Title_Head"></div>
-        <div id="Title"><!--页面标题-->
-            <img border="0" width="13" height="13" src="style/images/title_arrow.gif"/> 部门信息
-        </div>
-        <div id="Title_End"></div>
-    </div>
+<div id="scrollContent">
+	<div class="box2" panelWidth="500" panelTitle="新增部门" >
+		<form:form method="post" action="department/update.oa" commandName="department">
+			<form:input type="hidden" path="id"/>
+			
+			<table class="tableStyle">
+			
+				<tr><td width="100">上级部门</td>
+                    <td><form:select path="parent" items="${departmentList }" itemLabel="name" itemValue="id">
+                           
+                        </form:select>  
+                    </td>
+                </tr>
+			
+				<tr><td width="150">部门名称：</td>   <td><form:input type="text" path="name" class="validate[required]"/> <span class="star">*</span></td></tr> 
+				
+				<tr><td width="150">职能说明：</td>    <td> <form:textarea path="description" rows="2" cols="3"></form:textarea> </td></tr>
+				
+				<!-- 
+				<tr><td colspan="2"><input type="submit" value="提交"/>&nbsp;<input type="reset" value="重置"/></td></tr>
+				 -->
+				<tr><td colspan="2"><input type="submit" value="提交"/>&nbsp;&nbsp;<input type="button" onclick="history.back()" value="返回"/></td></tr>
+				
+			</table>
+		</form:form>
+	</div>
+	
+	
 </div>
-
-<!--显示表单内容-->
-<div id=MainArea>
-
-    <s:form action="department_%{id == 0 ? 'add' : 'update'}.action">
-    	<s:hidden name="id"/>
-        <div class="ItemBlock_Title1"><!-- 信息说明<DIV CLASS="ItemBlock_Title1">
-        	<IMG BORDER="0" WIDTH="4" HEIGHT="7" SRC="style/blue/images/item_point.gif" /> 部门信息 </DIV>  -->
-        </div>
-        
-        <!-- 表单内容显示 -->
-        <div class="ItemBlockBorder">
-            <div class="ItemBlock">
-                <table cellpadding="0" cellspacing="0" class="mainForm">
-                    <tr><td width="100">上级部门</td>
-                        <td><s:select name="parentId" cssClass="SelectStyle" list="#departmentList" headerKey="-1" headerValue="请选择部门" listKey="id" listValue="name">
-                               
-                            </s:select>
-                        </td>
-                    </tr>
-                    <tr><td>部门名称</td>
-                        <td>
-                        	<s:textfield cssClass="InputStyle" name="name"></s:textfield>
-                         *</td>
-                    </tr>
-                    <tr><td>职能说明</td>
-                        <td>
-                        	<s:textarea name="description" cssClass="TextareaStyle"></s:textarea>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>   
-        
-        <!-- 表单操作 -->
-        <div id="InputDetailBar">
-            <input type="image" src="style/images/save.png"/>
-            <a href="javascript:history.go(-1);"><img src="style/images/goBack.png"/></a>
-        </div>
-    </s:form>
-</div>
-
-<div class="Description">
-	说明：<br />
-	1，上级部门的列表是有层次结构的（树形）。<br/>
-	2，如果是修改：上级部门列表中不能显示当前修改的部门及其子孙部门。因为不能选择自已或自已的子部门作为上级部门。<br />
-</div>
-
 </body>
 </html>
 

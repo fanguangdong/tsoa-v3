@@ -2,10 +2,13 @@ package cn.ts987.oa.controller;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +30,12 @@ public class DepartmentController extends BaseController<Department>{
 	 */
 	@RequestMapping("/list")
 	public ModelAndView list(HttpServletRequest req) throws Exception {
-		Long parentId = Long.valueOf(req.getParameter("parentId"));
+		String sParentId = req.getParameter("parentId");
+		Long parentId = (long) 0;
+		if(!StringUtil.isBlank(sParentId)) {
+			parentId = Long.valueOf(req.getParameter("parentId"));
+		}
+		
 		logger.debug("list->  parentId=" + parentId);
 		return this.list(parentId);
 	}
@@ -91,17 +99,21 @@ public class DepartmentController extends BaseController<Department>{
 	 */
 	@RequestMapping("/update")
 	public ModelAndView update(HttpServletRequest req) throws Exception {
-		Long id = Long.valueOf(req.getParameter("id"));   //部门id
+		
 		Long parentId = Long.valueOf(req.getParameter("parentId"));//上级部门id
+		String sId = req.getParameter("id");
+		
 		String name = req.getParameter("name");
 		String description = req.getParameter("description");
 		
-		logger.debug("update->  id=" + id);
-		logger.debug("update->  parentId=" + parentId);
-		logger.debug("update->  name=" + name);
-		logger.debug("update->  description=" + description);
+		Department department = null;
 		
-		Department department = departmentService.findById(id);
+		if(StringUtil.isBlankOrNull(sId)) {  //如果是空的
+			department = new Department();
+		} else {
+			Long id = Long.valueOf(sId);
+			department = departmentService.findById(id);
+		}
 		
 		if(parentId >= 0) {
 			Department parentDepartment = departmentService.findById(parentId);
@@ -109,6 +121,7 @@ public class DepartmentController extends BaseController<Department>{
 				department.setParent(parentDepartment);
 			else 
 				department.setParent(null);
+			
 		} else {
 			department.setParent(null);
 		}
@@ -150,13 +163,20 @@ public class DepartmentController extends BaseController<Department>{
 	public ModelAndView addUI() throws Exception {
 		List<Department> topList = departmentService.findRootList();
 		
+		Department department = new Department();
+		
 		List<Department> showDepartmentList = new ArrayList<Department>();
 		
 		show(topList, "", showDepartmentList);  //根据部门层级缩进
 		
+		logger.debug("showDepartmentList.size=" + showDepartmentList.size());
+	   
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("departmentList", showDepartmentList);
+	 
+		mv.addObject("department", department);
 		mv.setViewName("department/saveUI");
+	  
 		return mv;
 	}
 	
@@ -168,25 +188,31 @@ public class DepartmentController extends BaseController<Department>{
 	 */
 	@RequestMapping("/updateUI")
 	public ModelAndView updateUI(HttpServletRequest req) throws Exception {
-		Long id = Long.valueOf(req.getParameter("id"));
+		String sId = req.getParameter("id");
+		ModelAndView mv = new ModelAndView();
+		
+		Department department = null;
+		
+		Long id = Long.valueOf(sId);
 		
 		logger.debug("updateUI->  id=" + id);
 		
-		Department department = departmentService.findById(id);
+		department = departmentService.findById(id);
+		
+		if(department.getParent() != null) {  //如果有上级部门
+			//Long parentId = department.getParent().getId();
+			
+			//mv.addObject("parentId", parentId);
+		}
 		
 		List<Department> topList = departmentService.findRootList();
 		
 		List<Department> showDepartmentList = new ArrayList<Department>();
 		show(topList, "", showDepartmentList);
 		
-		ModelAndView mv = new ModelAndView();
+		mv.addObject("department", department);
 		mv.addObject("departmentList", showDepartmentList);
 		mv.setViewName("department/saveUI");
-		if(department.getParent() != null) {
-			Long parentId = department.getParent().getId();
-			mv.addObject("department", department);
-			mv.addObject("parentId", parentId);
-		}
 		
 		return mv;
 	}
