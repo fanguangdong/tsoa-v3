@@ -3,7 +3,7 @@
 <html>
 <head>
 <title>配置权限</title>
-    <%@include file="../common.jsp" %>
+    <%@include file="/commons/common.jsp" %>
     
 	<script language="javascript" src="script/jquery_treeview/jquery.treeview.js"></script>
 	<link type="text/css" rel="stylesheet" href="style/blue/file.css" />

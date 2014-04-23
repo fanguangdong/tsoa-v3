@@ -4,7 +4,7 @@
 <head>
 	<title>部门设置</title>
     
-	<%@ include file="../common.jsp" %>
+	<%@ include file="/commons/common.jsp" %>
 </head>
 <body>
 

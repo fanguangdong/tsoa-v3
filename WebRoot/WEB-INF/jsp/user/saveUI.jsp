@@ -4,7 +4,7 @@
 <head>
 	<title>用户信息</title>
 	
-	<%@ include file="../common.jsp"  %>
+	<%@ include file="/commons/common.jsp"  %>
     
     <script type="text/javascript">
     	alert(%{id});

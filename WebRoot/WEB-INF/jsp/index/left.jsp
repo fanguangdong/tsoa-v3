@@ -23,14 +23,14 @@
 		{ id:3001, parentId:0, name:"审批流转",icon:"libs/icons/edit.gif"},
 		{ id:101, parentId:3001, name:"审批流程管理",url:"processDefinition/list.oa", target:"frmright",iconOpen:"libs/icons/folder_doc.gif",iconClose:"libs/icons/folder_doc.gif",icon:"system/layout/skin/titlebar_arrow.gif"},
 		{ id:102, parentId:3001, name:"表单模板管理",url:"formTemplate/list.oa", target:"frmright",iconOpen:"libs/icons/folder_doc.gif",iconClose:"libs/icons/folder_doc.gif",icon:"system/layout/skin/titlebar_arrow.gif"},
-		{ id:103, parentId:3001, name:"起草申请",url:"form_formTemplateList.action", target:"frmright",iconOpen:"libs/icons/folder_doc.gif",iconClose:"libs/icons/folder_doc.gif",icon:"system/layout/skin/titlebar_arrow.gif"},
-		{ id:104, parentId:3001, name:"待我审批",url:"form_myTaskList.action", target:"frmright",iconOpen:"libs/icons/folder_doc.gif",iconClose:"libs/icons/folder_doc.gif",icon:"system/layout/skin/titlebar_arrow.gif"},
-		{ id:105, parentId:3001, name:"我的申请查询",url:"form_myApplicationList.action", target:"frmright",iconOpen:"libs/icons/folder_doc.gif",iconClose:"libs/icons/folder_doc.gif",icon:"system/layout/skin/titlebar_arrow.gif"},
+		{ id:103, parentId:3001, name:"起草申请",url:"form/formTemplateList.oa", target:"frmright",iconOpen:"libs/icons/folder_doc.gif",iconClose:"libs/icons/folder_doc.gif",icon:"system/layout/skin/titlebar_arrow.gif"},
+		{ id:104, parentId:3001, name:"待我审批",url:"form/myTaskList.oa", target:"frmright",iconOpen:"libs/icons/folder_doc.gif",iconClose:"libs/icons/folder_doc.gif",icon:"system/layout/skin/titlebar_arrow.gif"},
+		{ id:105, parentId:3001, name:"我的申请查询",url:"form/myApplicationList.oa", target:"frmright",iconOpen:"libs/icons/folder_doc.gif",iconClose:"libs/icons/folder_doc.gif",icon:"system/layout/skin/titlebar_arrow.gif"},
 		
 		{ id:3009, parentId:0, name:"系统管理",icon:"libs/icons/edit.gif"},
 		{ id:301, parentId:3009, name:"用户管理",url:"user/list.oa", target:"frmright",iconOpen:"libs/icons/folder_doc.gif",iconClose:"libs/icons/folder_doc.gif",icon:"system/layout/skin/titlebar_arrow.gif"},
 		{ id:302, parentId:3009, name:"岗位管理",url:"role/list.oa", target:"frmright",iconOpen:"libs/icons/folder_doc.gif",iconClose:"libs/icons/folder_doc.gif",icon:"system/layout/skin/titlebar_arrow.gif"},
-		{ id:303, parentId:3009, name:"部门管理",url:"form_formTemplateList.action", target:"frmright",iconOpen:"libs/icons/folder_doc.gif",iconClose:"libs/icons/folder_doc.gif",icon:"system/layout/skin/titlebar_arrow.gif"},
+		{ id:303, parentId:3009, name:"部门管理",url:"department/list.oa", target:"frmright",iconOpen:"libs/icons/folder_doc.gif",iconClose:"libs/icons/folder_doc.gif",icon:"system/layout/skin/titlebar_arrow.gif"},
 		
 		{ id:3002, parentId:0, name:"表格模板",icon:"libs/icons/layers.gif"},
 		{ id:201, parentId:3002, name:"页面中的grid表格",url:"../../sample/demo/grid-page.html", target:"frmright",iconOpen:"libs/icons/folder_doc.gif",iconClose:"libs/icons/folder_doc.gif",icon:"system/layout/skin/titlebar_arrow.gif"},

@@ -48,19 +48,18 @@
 <div class="box2" panelWidth="90%" panelTitle="请选择模板文件">
 	<div id="scrollContent">
 	
-		<s:iterator value="#formTemplateList">
-			<div class="navIcon" onclick="openurl('form_submitUI.action', 'formTemplateId', <s:property value="id"></s:property>); " style='display:block; float:left; margin:10px 10px'>
+		<c:forEach var="ft" items="${formTemplateList }">
+			<div class="navIcon" onclick="openurl('form_submitUI.action', 'formTemplateId', ${ft.id}); " style='display:block; float:left; margin:10px 10px'>
 				<div class="navIcon_left"><img src="libs/icons/png/04.png"/></div>
 				<div class="navIcon_right">
-					<div class="navIcon_right_title"> <h3>${name}</h3> </div>
+					<div class="navIcon_right_title"> <h3>${ft.name}</h3> </div>
 					<div class="navIcon_right_con">
-						<font color="gray" size="1.5">${description}</font> 
+						<font color="gray" size="1.5">${ft.description}</font> 
 					</div>
 				</div>
 				<div class="clear"></div> 
 			</div>
-		</s:iterator>
-		
+		</c:forEach>
 		
 	</div>
 </div>

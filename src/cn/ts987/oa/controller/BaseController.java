@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -75,10 +76,9 @@ public abstract class BaseController<T>{
 	 * 获得当前用户
 	 * @return
 	 */
-	protected User getCurrentUser() {
+	protected User getCurrentUser(HttpSession session) {
 			
-		//return (User) ActionContext.getContext().getSession().get("user");
-		return null;
+		return (User) session.getAttribute("user");
 	}
 	
 	/**
