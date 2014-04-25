@@ -99,8 +99,10 @@ public class DepartmentController extends BaseController<Department>{
 	 */
 	@RequestMapping("/update")
 	public ModelAndView update(HttpServletRequest req) throws Exception {
+		String sParentId = req.getParameter("parent");
 		
-		Long parentId = Long.valueOf(req.getParameter("parentId"));//上级部门id
+		Long parentId = StringUtil.isBlank(sParentId) ? 0 : Long.valueOf(sParentId);//上级部门id
+		
 		String sId = req.getParameter("id");
 		
 		String name = req.getParameter("name");
@@ -108,7 +110,9 @@ public class DepartmentController extends BaseController<Department>{
 		
 		Department department = null;
 		
-		if(StringUtil.isBlankOrNull(sId)) {  //如果是空的
+		boolean isAdd = StringUtil.isBlankOrNull(sId) || Long.valueOf(sId) == 0;
+		
+		if(isAdd) {  //如果是空的
 			department = new Department();
 		} else {
 			Long id = Long.valueOf(sId);
@@ -128,7 +132,11 @@ public class DepartmentController extends BaseController<Department>{
 		
 		department.setName(name);
 		department.setDescription(description);
-		departmentService.update(department);
+		if(isAdd) {
+			departmentService.add(department);
+		} else {
+			departmentService.update(department);
+		}
 		
 		return this.list(parentId);
 	}
