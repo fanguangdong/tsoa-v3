@@ -1,28 +1,170 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>用户信息</title>
-	
-	<%@ include file="/commons/common.jsp"  %>
-    
-    <script type="text/javascript">
-    	alert(%{id});
-    </script>
-    
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<%@include file="/commons/common.jsp" %>
+<!--框架必需start-->
+<script type="text/javascript" src="libs/js/jquery.js"></script>
+<script type="text/javascript" src="libs/js/framework.js"></script>
+<link href="libs/css/import_basic.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" id="skin" prePath="<%=request.getContextPath() %>/"/>
+<link rel="stylesheet" type="text/css" id="customSkin"/>
+<!--框架必需end-->
+
+<!-- 日期选择框start -->
+<script type="text/javascript" src="libs/js/form/datePicker/WdatePicker.js"></script>
+<!-- 日期选择框end -->
+
+<script type="text/javascript">
+	function readDataFromDevice() {
+		alert("readDataFromDevice");
+	}
+</script>
 </head>
 <body>
+<applet code="com.HelloApplet.class" id="helloApplet" codebase="." archive = "helloApplet.jar" width="0" height="0"/>
+<div id="scrollContent">
 
-<!-- 标题显示 -->
-<div id="Title_bar">
-    <div id="Title_bar_Head">
-        <div id="Title_Head"></div>
-        <div id="Title"><!--页面标题-->
-            <img border="0" width="13" height="13" src="style/images/title_arrow.gif"/> 用户信息
-        </div>
-        <div id="Title_End"></div>
-    </div>
+
+<div class="box2" panelTitle="功能面板" roller="false">
+	<table>
+		<tr>
+			<!-- 
+			<td>流程名称：</td>
+			<td><input id="query_userName" type="text"/></td>
+			<td><button type="button" onclick="searchHandler()"><span class="icon_find">查询</span></button></td>
+			 -->
+			<td><button type="button" onclick="readDataFromDevice()"><span class="icon_add">从设备读取</span></button></td>
+			<td><div class="red">&nbsp;</div></td>
+		</tr>
+	</table>
 </div>
+
+<div class="box2" panelWidth="750" panelTitle="用户信息">
+	<fieldset> 
+		<legend>用户基本信息</legend> 
+		<table class="tableStyle" formMode="transparent" footer="normal">
+			<tr>
+				<td width="15%">姓名：</td><td width="35%"><input type="text"/></td>
+				<td width="15%">性别：</td>
+				<td><input type="radio" id="radio-1" name="ra" value="radio-1" class="hand"/><label for="radio-1" class="hand">男</label>
+					<input type="radio" id="radio-2" name="ra" value="radio-2" class="hand"/><label for="radio-2" class="hand">女</label>
+				</td>
+			</tr>
+			<tr>
+				<td>证件号码：</td>
+				<td><input type="text"/></td>
+				<td>婚姻：</td>
+				<td><input type="radio" id="radio-3" name="ra2" value="radio-3" class="hand"/><label for="radio-3" class="hand">已婚</label>
+					<input type="radio" id="radio-4" name="ra2" value="radio-4" class="hand"/><label for="radio-4" class="hand">未婚</label>
+				</td>
+			</tr>
+			<tr>
+				<td>联系电话：</td>
+				<td><input type="text"/></td>
+				<td>出生日期：</td>
+				<td>
+					<input type="text" class="date"/>
+				</td>
+			</tr>
+		</table>
+	</fieldset> 
+	<div class="height_15"></div>
+	<fieldset> 
+		<legend>用户详细信息</legend> 
+		<table class="tableStyle" formMode="transparent" footer="normal">
+			<tr>
+				<td width="15%">籍贯：</td>
+				<td width="35%">
+					<select><option>北京市</option><option>天津市</option><option>黑龙江省</option></select>
+				</td>
+				<td width="15%">民族：</td>
+				<td>
+					<select><option value="1">汉族</option><option value="2">满族</option><option value="3">维吾尔族</option></select>
+				</td>
+			</tr>
+			<tr>
+				<td>学历：</td>
+				<td>
+				<select><option>博士</option><option>本科</option><option>大专</option><option>其它</option></select>				
+				</td>
+				<td>权限：</td>
+				<td>
+				<select><option value="1">新增图片</option><option value="2">维护图片</option><option value="3">新增新闻</option></select>
+				</td>
+			</tr>
+		</table>
+	</fieldset> 
+	<div class="height_15"></div>
+	<fieldset> 
+		<legend>用户其他信息</legend> 
+		<table class="tableStyle" formMode="transparent" footer="normal">
+			<tr>
+				<td width="15%">邮政编码：</td><td width="35%"><input type="text"/></td>
+				<td width="15%">上传附件：</td><td><input type="file"/></td>
+			</tr>
+			<tr>
+				<td>固定电话：</td><td><input type="text"/></td>
+				
+				<td>上传文档：</td><td><input type="file"/></td>
+			</tr>
+			<tr>
+				<td>备注：</td>
+				<td colspan="3">
+					<textarea style="width:400px;"></textarea>
+				</td>
+			</tr>
+		</table>
+	</fieldset>
+	
+	<fieldset> 
+		<legend>岗位设置</legend> 
+		<table class="tableStyle" formMode="transparent" footer="normal">
+			
+			<tr>
+				<td>岗位设置：</td>
+				<td colspan="3">
+					<select style="width:300px;" multiple="true" size="10"></select>
+				</td>
+			</tr>
+		</table>
+	</fieldset>
+	<div class="height_5"></div>
+	<div class="padding_top10">
+		<table class="tableStyle" formMode="transparent">
+			<tr>
+				<td colspan="4">
+					<input type="submit" value="提交"/>
+					<input type="reset" value="重置"/>
+				</td>
+			</tr>
+		</table>
+	</div> 
+	</div>
+
+</div>
+<script>
+function initComplete(){
+	 //设为不可用
+	$("#form1").mask("当前不可用",500,false,"#ffffff");
+}
+ //设为不可用
+function disableForm(){
+	$("#form1").mask("当前不可用",0,false,"#ffffff");
+}
+//设为可用
+function enableForm(){
+    $("#form1").unmask();
+}
+</script>
+</body>
+</html>
+
+
+
 
 <!--显示表单内容-->
 <div id=MainArea>
@@ -96,23 +238,11 @@
             </div>
         </div>		
 		
-        <!-- 表单操作 -->
-        <div id="InputDetailBar">
-            <input type="image" src="style/images/save.png"/>
-            <a href="javascript:history.go(-1);"><img src="style/images/goBack.png"/></a>
-        </div>
+ 
     </s:form>
 </div>
 
-<div class="Description">
-	说明：<br />
-	1，用户的登录名要唯一，在填写时要同时检测是否可用。<br />
-	2，新建用户后，密码被初始化为"1234"。<br />
-	3，密码在数据库中存储的是MD5摘要（不是存储明文密码）。<br />
-	4，用户登录系统后可以使用“个人设置→修改密码”功能修改密码。<br />
-	5，新建用户后，会自动指定默认的头像。用户可以使用“个人设置→个人信息”功能修改自已的头像<br />
-	6，修改用户信息时，登录名不可修改。
-</div>
+
 
 </body>
 </html>

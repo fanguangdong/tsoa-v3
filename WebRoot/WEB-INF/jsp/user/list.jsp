@@ -29,7 +29,7 @@
 	
 	<table>
 		<tr>
-			<td><button type="button" onclick="window.location.href='formTemplate_addUI.action'"><span class="icon_add">&nbsp;新增用户</span></button></td>
+			<td><button type="button" onclick="window.location.href='user/addUI.oa'"><span class="icon_add">&nbsp;新增用户</span></button></td>
 		</tr>
 	</table>
 	 

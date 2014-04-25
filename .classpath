@@ -6,6 +6,7 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaEE"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/javaEE"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/activition5.14/activation-1.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/activition5.14/activiti-bpmn-converter-5.14.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/activition5.14/activiti-bpmn-layout-5.14.jar"/>

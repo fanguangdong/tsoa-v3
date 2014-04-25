@@ -22,6 +22,7 @@ import cn.ts987.oa.util.StringUtil;
 
 
 @Controller
+@RequestMapping("/user")
 public class UserController extends BaseController<User>{
 
 	private List<User> userList;
@@ -31,7 +32,7 @@ public class UserController extends BaseController<User>{
 	private Long[] roleIds;
 	
 	//用户登陆
-	@RequestMapping("/user/loginUI")
+	@RequestMapping("/loginUI")
 	public ModelAndView loginUI() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("login/login");
@@ -39,7 +40,7 @@ public class UserController extends BaseController<User>{
 	}
 	
 	@SuppressWarnings("rawtypes")
-	@RequestMapping("/user/login")
+	@RequestMapping("/login")
 	@ResponseBody
 	public Map login(HttpServletRequest request, HttpServletResponse response)
 	{
@@ -66,13 +67,13 @@ public class UserController extends BaseController<User>{
 		return rtn;
 	}
 	
-	@RequestMapping("/user/logout")
+	@RequestMapping("/logout")
 	public ModelAndView logout(HttpSession session) {
 	    session.removeAttribute("user");
 	    return loginUI();
 	}
 	
-	@RequestMapping("/user/list")
+	@RequestMapping("/list")
 	public ModelAndView list() throws Exception {
 		userList = userService.list();
 		System.out.println("userList size:  " + userList.size());
@@ -85,6 +86,7 @@ public class UserController extends BaseController<User>{
 		return mv;
 	}
 	
+	@RequestMapping("/add")
 	public String add() throws Exception {
 		Department department = departmentService.findById(departmentId);
 		model.setDepartment(department);
@@ -97,6 +99,7 @@ public class UserController extends BaseController<User>{
 		return "toList";
 	}
 	
+	@RequestMapping("/update")
 	public String update() throws Exception {
 		User user = userService.findById(model.getId());
 		
@@ -125,14 +128,14 @@ public class UserController extends BaseController<User>{
 		return "toList";
 	}
 	 
+	@RequestMapping("/delete")
 	public String delete() throws Exception {
 		userService.delete(model.getId());
 		return "toList";
 	}
 	
-	public String addUI() throws Exception {
-		userService.jbpmTest();
-		
+	@RequestMapping("/addUI")
+	public ModelAndView addUI() throws Exception {
 		departmentId = -1;    //新增页面，部门下拉框及岗位多选栏为默认不选状态
 		roleIds = null;
 		
@@ -150,9 +153,16 @@ public class UserController extends BaseController<User>{
 		
 		User user = new User();
 		//ActionContext.getContext().getValueStack().push(user);
-		return "saveUI";
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("departmentList", departmentList);
+		mv.addObject("roleList", roleList);
+		mv.addObject(user);
+		mv.setViewName("user/saveUI");
+		return mv; 
 	}
 	
+	@RequestMapping("/updateUI")
 	public String updateUI() throws Exception {
 		List<Department> departmentList = departmentService.findAll();
 		//ActionContext.getContext().put("departmentList", departmentList);
@@ -192,11 +202,7 @@ public class UserController extends BaseController<User>{
 		return "saveUI"; 
 	}
 	
-	public String toList() throws Exception {
-		 
-		return "toList";
-	}
-
+	
 	public void setDepartmentId(long departmentId) {
 		this.departmentId = departmentId;
 	}
